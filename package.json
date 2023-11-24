@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build:development": "tsc && vite build --mode development",
+		"build:development": "tsc && vite build -m development",
 		"build:production": "tsc && vite build",
 		"commit": "git-cz",
 		"dev": "vite",
