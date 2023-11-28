@@ -12,7 +12,6 @@ const getInitialLanguage = (): Language => {
 		storedLanguage = Language.AZ;
 		localStorage.setItem(LANGUAGE_KEY, storedLanguage);
 	}
-	console.log(storedLanguage);
 
 	return storedLanguage as Language;
 };
