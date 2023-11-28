@@ -7,12 +7,12 @@
 		"build:development": "tsc && vite build -m development",
 		"build:production": "tsc && vite build",
 		"commit": "git-cz",
-		"dev": "vite",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
 		"lint:fix": "npm run lint --fix",
 		"prepare": "husky install",
 		"preview": "vite preview",
+		"start:dev": "vite",
 		"test": "vitest",
 		"type-check": "tsc"
 	},
@@ -31,8 +31,14 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.8.1",
 		"axios": "^1.6.2",
+		"i18next": "^23.7.6",
+		"i18next-browser-languagedetector": "^7.2.0",
+		"i18next-chained-backend": "^4.6.2",
+		"i18next-http-backend": "^2.4.2",
+		"i18next-localstorage-backend": "^4.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-i18next": "^13.5.0",
 		"react-redux": "^8.0.1",
 		"react-router-dom": "^6.20.0"
 	},

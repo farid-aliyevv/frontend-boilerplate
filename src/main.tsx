@@ -1,4 +1,5 @@
 import './index.css';
+import 'i18n';
 
 import { store } from 'app/store';
 import React from 'react';
