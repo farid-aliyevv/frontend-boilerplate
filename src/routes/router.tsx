@@ -1,3 +1,4 @@
+import Spinner from 'components/spinner';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ const AuthLayout = lazy(() => import('views/layout/auth'));
 const LoginPage = lazy(() => import('views/auth/login'));
 
 const SuspenseLayout = () => (
-	<Suspense fallback={<>Loading...</>}>
+	<Suspense fallback={<Spinner />}>
 		<Outlet />
 	</Suspense>
 );
