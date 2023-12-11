@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_KEY } from 'config';
+import { ACCESS_TOKEN_KEY } from 'configs/constants';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const PrivateRoute = () => {

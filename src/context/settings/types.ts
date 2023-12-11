@@ -1,4 +1,4 @@
-import { Language } from 'enum';
+import { Language } from 'types/enum';
 
 export interface SettingsState {
 	language: Language;

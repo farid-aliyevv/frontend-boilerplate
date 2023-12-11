@@ -2,6 +2,8 @@ import './index.css';
 import 'i18n';
 
 import { store } from 'app/store';
+import { SettingsConsumer } from 'configs/context/settingsContext';
+import ThemeComponent from 'configs/theme/ThemeComponent';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -11,7 +13,15 @@ import { router } from 'routes';
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<SettingsConsumer>
+				{({ settings }) => {
+					return (
+						<ThemeComponent settings={settings}>
+							<RouterProvider router={router} />
+						</ThemeComponent>
+					);
+				}}
+			</SettingsConsumer>
 		</Provider>
 	</React.StrictMode>,
 );

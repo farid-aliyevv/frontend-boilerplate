@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { ACCESS_TOKEN_KEY, USER_KEY } from 'config';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ACCESS_TOKEN_KEY, USER_KEY } from 'configs/constants';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -47,6 +47,7 @@ api.interceptors.response.use(
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 export const request = {
-	get: <T>(url: string, config?: object) => axios.get<T>(url, config).then(responseBody),
-	post: <T>(url: string, body: object) => axios.post<T>(url, body).then(responseBody),
+	get: <T>(url: string, config?: AxiosRequestConfig) => axios.get<T>(url, config).then(responseBody),
+	post: <T>(url: string, body: object, config?: AxiosRequestConfig) =>
+		axios.post<T>(url, body, config).then(responseBody),
 };

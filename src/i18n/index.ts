@@ -1,13 +1,15 @@
-import { LANGUAGE_KEY, VERSION } from 'config';
-import { Language } from 'enum';
+import { LANGUAGE_KEY, VERSION } from 'configs/constants';
 import * as i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-chained-backend';
 import HttpApi from 'i18next-http-backend'; // fallback http load
 import LocalStorageBackend from 'i18next-localstorage-backend'; // primary use cache
 import { initReactI18next } from 'react-i18next';
+import { Language } from 'types/enum';
 
 import { namespaces } from './config';
+
+const currentLang = localStorage.getItem(LANGUAGE_KEY);
 
 i18n
 	// load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -26,11 +28,7 @@ i18n
 		fallbackLng: Language.AZ,
 		debug: false,
 		load: 'languageOnly',
-		lng:
-			localStorage.getItem(LANGUAGE_KEY) &&
-			Object.values(Language).includes(localStorage.getItem(LANGUAGE_KEY) as Language)
-				? localStorage.getItem(LANGUAGE_KEY)!
-				: Language.AZ,
+		lng: currentLang && Object.values(Language).includes(currentLang as Language) ? currentLang : Language.AZ,
 		backend: {
 			backends: [
 				LocalStorageBackend, // primary

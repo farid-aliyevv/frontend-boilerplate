@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { LANGUAGE_KEY } from 'config';
-import { Language } from 'enum';
+import { LANGUAGE_KEY } from 'configs/constants';
+import { Language } from 'types/enum';
 
 import { SettingsState } from './types';
 
