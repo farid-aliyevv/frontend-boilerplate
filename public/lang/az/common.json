@@ -1,3 +1,15 @@
 {
-	"hello": "Salam"
+	"signIn": "Daxil olun",
+	"email": "E-poçt",
+	"password": "Şifrə",
+	"rememberMe": "Məni xatırla",
+	"forgotPassword": "Parolu unutmusan?",
+	"login": "Daxil ol",
+	"required": "Məcburidir",
+	"invalidEmail": "E-poçt yanlışdır",
+	"az": "Azərbaycanca",
+	"en": "İngiliscə",
+	"ru": "Rusca",
+	"loginSuccess": "Uğurla giriş edildi!",
+	"defaultErrorMessage": "Xəta baş verdi!"
 }

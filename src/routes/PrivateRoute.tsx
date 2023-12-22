@@ -1,11 +1,12 @@
-import { ACCESS_TOKEN_KEY } from 'configs/constants';
+import { useAppSelector } from 'app/hooks';
+import { selectIsLoggedIn } from 'context/auth/authSlice';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 export const PrivateRoute = () => {
 	const location = useLocation();
-	const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+	const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
-	if (!token) {
+	if (!isLoggedIn) {
 		return <Navigate replace to="/login" state={{ from: location }} />;
 	}
 

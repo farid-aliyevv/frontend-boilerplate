@@ -30,7 +30,7 @@ const staticSettings = {
 };
 
 const restoreSettings = (): Settings | null => {
-	let settings = null;
+	let settings: Settings | null = null;
 
 	try {
 		const storedData: string | null = localStorage.getItem(SETTINGS_KEY);

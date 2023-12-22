@@ -47,7 +47,7 @@ api.interceptors.response.use(
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 export const request = {
-	get: <T>(url: string, config?: AxiosRequestConfig) => axios.get<T>(url, config).then(responseBody),
+	get: <T>(url: string, config?: AxiosRequestConfig) => api.get<T>(url, config).then(responseBody),
 	post: <T>(url: string, body: object, config?: AxiosRequestConfig) =>
-		axios.post<T>(url, body, config).then(responseBody),
+		api.post<T>(url, body, config).then(responseBody),
 };

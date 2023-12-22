@@ -1,3 +1,15 @@
 {
-	"hello": "Hello"
+	"signIn": "Sign in",
+	"email": "Email",
+	"password": "Password",
+	"rememberMe": "Remember me",
+	"forgotPassword": "Forgot password?",
+	"login": "Login",
+	"required": "Required",
+	"invalidEmail": "Invalid email",
+	"az": "Azerbaijani",
+	"en": "English",
+	"ru": "Russian",
+	"loginSuccess": "Successfully logged in!",
+	"defaultErrorMessage": "Something went wrong!"
 }

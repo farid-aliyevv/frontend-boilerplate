@@ -1,3 +1,15 @@
 {
-	"hello": "Privet"
+	"signIn": "Войти",
+	"email": "Э-почта",
+	"password": "Пароль",
+	"rememberMe": "Запомни меня",
+	"forgotPassword": "Забыли пароль?",
+	"login": "Войти",
+	"required": "Требуется",
+	"invalidEmail": "Неверный адрес э-почты",
+	"az": "Азербайджанский",
+	"en": "Английский",
+	"ru": "Русский",
+	"loginSuccess": "Авторизация успешно пройдена!",
+	"defaultErrorMessage": "Произошла ошибка!"
 }

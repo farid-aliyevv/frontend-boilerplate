@@ -4,6 +4,13 @@ const input = () => {
 	return {
 		MuiInputLabel: {
 			styleOverrides: {
+				root: ({ theme }: OwnerStateThemeType) => ({
+					transform: 'none',
+					lineHeight: 1.154,
+					marginBottom: theme.spacing(1),
+					fontSize: theme.typography.body2.fontSize,
+					color: `${theme.palette.text.primary} !important`,
+				}),
 				outlined: {
 					'&.MuiInputLabel-shrink': {
 						transform: 'translate(14px, -8px) scale(0.75)',
@@ -77,6 +84,12 @@ const input = () => {
 				label: ({ theme }: OwnerStateThemeType) => ({
 					color: theme.palette.text.secondary,
 				}),
+			},
+		},
+
+		MuiTextField: {
+			defaultProps: {
+				fullWidth: true,
 			},
 		},
 	};
