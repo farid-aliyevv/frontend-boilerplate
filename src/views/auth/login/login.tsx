@@ -9,9 +9,9 @@ import {
 	InputAdornment,
 	InputLabel,
 	// Link,
-	styled,
 	Typography,
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { useMutation } from '@tanstack/react-query';
 import { LoginRequestDto } from 'api/services/auth.dto';
 import { useAppDispatch } from 'app/hooks';
@@ -116,7 +116,7 @@ export const Login = () => {
 			<Card className="card-wrapper">
 				<CardContent className="card-content">
 					<Box className="title">
-						<Typography variant="h3">ADS</Typography>
+						<Typography variant="h3">{import.meta.env.VITE_PROJECT_NAME}</Typography>
 					</Box>
 					<Box
 						sx={{
@@ -156,6 +156,7 @@ export const Login = () => {
 														<InputAdornment position="end">
 															<IconButton
 																edge="end"
+																onMouseDown={(e) => e.preventDefault()}
 																onClick={() =>
 																	setShowPassword((showPassword) => !showPassword)
 																}

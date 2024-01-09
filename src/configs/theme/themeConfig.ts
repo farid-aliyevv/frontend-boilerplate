@@ -29,7 +29,7 @@ type ThemeConfig = {
 
 const themeConfig: ThemeConfig = {
 	// ** Layout Configs
-	templateName: 'ADS' /* App Name */,
+	templateName: import.meta.env.VITE_PROJECT_NAME /* App Name */,
 	layout: 'vertical' /* vertical | horizontal */,
 	mode: 'light' as Mode /* light | dark | semi-dark /*! Note: semi-dark value will only work for Vertical Layout */,
 	skin: 'default' /* default | bordered */,
