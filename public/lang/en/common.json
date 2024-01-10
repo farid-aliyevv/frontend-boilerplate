@@ -11,5 +11,8 @@
 	"en": "English",
 	"ru": "Russian",
 	"loginSuccess": "Successfully logged in!",
-	"defaultErrorMessage": "Something went wrong!"
+	"defaultErrorMessage": "Something went wrong!",
+	"notFound": "Not Found",
+	"backToHome": "Back to home",
+	"urlNotFound": "The requested URL was not found on this server."
 }

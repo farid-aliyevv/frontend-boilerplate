@@ -11,5 +11,8 @@
 	"en": "İngiliscə",
 	"ru": "Rusca",
 	"loginSuccess": "Uğurla giriş edildi!",
-	"defaultErrorMessage": "Xəta baş verdi!"
+	"defaultErrorMessage": "Xəta baş verdi!",
+	"notFound": "Səhifə Tapılmadı",
+	"backToHome": "Ana səhifəyə qayıt",
+	"urlNotFound": "Tələb olunan URL bu serverdə tapılmadı."
 }

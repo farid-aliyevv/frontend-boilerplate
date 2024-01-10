@@ -2,14 +2,15 @@ import Page from 'components/page';
 import Spinner from 'components/spinner';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { PrivateRoute as PrivateRoutes } from './PrivateRoute';
 
 const AuthLayout = lazy(() => import('views/layout/auth'));
 const LoginPage = lazy(() => import('views/auth/login'));
+const NotFoundPage = lazy(() => import('views/misc/404'));
 
-const SuspenseLayout = () => {
+const RootLayout = () => {
 	const { t } = useTranslation();
 	const [currentPath, setCurrentPath] = useState('');
 
@@ -31,7 +32,7 @@ const SuspenseLayout = () => {
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <SuspenseLayout />,
+		element: <RootLayout />,
 		children: [
 			{
 				element: <AuthLayout />,
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
 						element: <div>Protected</div>,
 					},
 				],
+			},
+			{
+				path: '/404',
+				element: <NotFoundPage />,
+			},
+			{
+				path: '*',
+				element: <Navigate replace to="/404" />,
 			},
 		],
 	},
