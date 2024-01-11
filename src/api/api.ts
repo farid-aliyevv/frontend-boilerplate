@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ACCESS_TOKEN_KEY, USER_KEY } from 'configs/constants';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'configs/constants';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -35,7 +35,7 @@ api.interceptors.response.use(
 				// If a 403 error is received, it likely means the token has expired.
 				// You can remove the token from local storage and redirect the user to the login page.
 				localStorage.removeItem(ACCESS_TOKEN_KEY);
-				localStorage.removeItem(USER_KEY);
+				localStorage.removeItem(REFRESH_TOKEN_KEY);
 				window.location.href = '/login';
 				break;
 		}

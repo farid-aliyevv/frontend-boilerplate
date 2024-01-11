@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { auth } from 'api/services/auth';
-import { LoginRequestDto } from 'api/services/auth.dto';
+import { auth } from 'api/services/auth/auth';
+import { LoginRequestDto } from 'api/services/auth/auth.dto';
 import { RootState } from 'app/store';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'configs/constants';
 import { getUserFromToken } from 'utils/get-user-from-token';
