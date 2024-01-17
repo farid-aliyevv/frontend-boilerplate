@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { auth } from 'api/services/auth/auth';
-import { LoginRequestDto } from 'api/services/auth/auth.dto';
 import { RootState } from 'app/store';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'configs/constants';
 import { getUserFromToken } from 'utils/get-user-from-token';
@@ -16,16 +16,20 @@ const getInitialState = (): AuthState => {
 
 const initialState: AuthState = getInitialState();
 
-export const loginAsync = createAsyncThunk('auth/login', async (data: LoginRequestDto) => {
-	try {
-		const response = await auth.login(data);
+const createAuthThunk = <T, U>(type: string, authMethod: (data: T) => Promise<U>) =>
+	createAsyncThunk(type, async (data: T) => {
+		try {
+			const response = await authMethod(data);
 
-		return response;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} catch (error: any) {
-		throw new Error(JSON.stringify(error.response.data));
-	}
-});
+			return response;
+		} catch (error: any) {
+			throw new Error(JSON.stringify(error.response?.data));
+		}
+	});
+
+export const loginAsync = createAuthThunk('auth/login', auth.login);
+export const refreshTokenAsync = createAuthThunk('auth/refreshToken', auth.refreshToken);
+export const logoutAsync = createAuthThunk('auth/revokeToken', auth.revokeToken);
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -44,6 +48,20 @@ export const authSlice = createSlice({
 			})
 			.addCase(loginAsync.rejected, (_, { error }) => {
 				throw error;
+			})
+			.addCase(logoutAsync.fulfilled, (state) => {
+				state.isLoggedIn = false;
+				state.currentUser = null;
+				localStorage.removeItem(ACCESS_TOKEN_KEY);
+				localStorage.removeItem(REFRESH_TOKEN_KEY);
+			})
+			.addCase(logoutAsync.rejected, (_, { error }) => {
+				throw error;
+			})
+			.addCase(refreshTokenAsync.fulfilled, (_, { payload }) => {
+				const { accessToken, refreshToken } = payload;
+				localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+				localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 			});
 	},
 });

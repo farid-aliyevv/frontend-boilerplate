@@ -1,4 +1,5 @@
 {
 	"/login": "Giriş",
-	"/404": "Səhifə tapılmadı"
+	"/404": "Səhifə tapılmadı",
+	"/": "Ana səhifə"
 }
