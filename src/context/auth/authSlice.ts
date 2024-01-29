@@ -29,7 +29,7 @@ const createAuthThunk = <T, U>(type: string, authMethod: (data: T) => Promise<U>
 
 export const loginAsync = createAuthThunk('auth/login', auth.login);
 export const refreshTokenAsync = createAuthThunk('auth/refreshToken', auth.refreshToken);
-export const logoutAsync = createAuthThunk('auth/revokeToken', auth.revokeToken);
+export const logoutAsync = createAuthThunk('auth/logout', auth.revokeToken);
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -49,6 +49,14 @@ export const authSlice = createSlice({
 			.addCase(loginAsync.rejected, (_, { error }) => {
 				throw error;
 			})
+			.addCase(refreshTokenAsync.fulfilled, (_, { payload }) => {
+				const { accessToken, refreshToken } = payload;
+				localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+				localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+			})
+			.addCase(refreshTokenAsync.rejected, (_, { error }) => {
+				throw error;
+			})
 			.addCase(logoutAsync.fulfilled, (state) => {
 				state.isLoggedIn = false;
 				state.currentUser = null;
@@ -57,11 +65,6 @@ export const authSlice = createSlice({
 			})
 			.addCase(logoutAsync.rejected, (_, { error }) => {
 				throw error;
-			})
-			.addCase(refreshTokenAsync.fulfilled, (_, { payload }) => {
-				const { accessToken, refreshToken } = payload;
-				localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-				localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 			});
 	},
 });

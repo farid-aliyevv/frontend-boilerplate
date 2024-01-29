@@ -16,23 +16,25 @@ import { router } from 'routes';
 export const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<QueryClientProvider client={queryClient}>
-		<Provider store={store}>
-			<SettingsConsumer>
-				{({ settings }) => {
-					return (
-						<ThemeComponent settings={settings}>
-							<RouterProvider router={router} />
-							<ReactHotToast>
-								<Toaster
-									position={settings.toastPosition}
-									toastOptions={{ className: 'react-hot-toast' }}
-								/>
-							</ReactHotToast>
-						</ThemeComponent>
-					);
-				}}
-			</SettingsConsumer>
-		</Provider>
-	</QueryClientProvider>,
+	<React.StrictMode>
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<SettingsConsumer>
+					{({ settings }) => {
+						return (
+							<ThemeComponent settings={settings}>
+								<RouterProvider router={router} />
+								<ReactHotToast>
+									<Toaster
+										position={settings.toastPosition}
+										toastOptions={{ className: 'react-hot-toast' }}
+									/>
+								</ReactHotToast>
+							</ThemeComponent>
+						);
+					}}
+				</SettingsConsumer>
+			</Provider>
+		</QueryClientProvider>
+	</React.StrictMode>,
 );
