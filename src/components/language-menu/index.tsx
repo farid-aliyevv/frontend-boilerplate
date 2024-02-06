@@ -1,18 +1,21 @@
 import { useAppDispatch } from 'app/hooks';
 import Icon from 'components/icon';
 import OptionsMenu from 'components/options-menu';
+import { useSettings } from 'configs/context/settingsContext';
 import { setLanguage } from 'context/settings/settingsSlice';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Language } from 'types';
+import { Language, Locale } from 'types';
 
 const LanguageMenu = () => {
 	const { i18n, t } = useTranslation();
 	const dispatch = useAppDispatch();
+	const { settings, saveSettings } = useSettings();
 
 	const handleLangItemClick = (lang: Language) => {
 		i18n.changeLanguage(lang);
 		dispatch(setLanguage(lang));
+		saveSettings({ ...settings, locale: Locale[lang] });
 	};
 
 	useEffect(() => {

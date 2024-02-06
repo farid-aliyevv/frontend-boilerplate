@@ -1,6 +1,6 @@
 import { ComponentsPropsList } from '@mui/material';
 import { Theme } from '@mui/material/styles';
-import { Settings } from 'configs/context/settingsContext';
+import { Settings } from 'configs/context/types';
 
 import MuiAccordion from './accordion';
 import MuiAlerts from './alerts';

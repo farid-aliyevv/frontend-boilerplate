@@ -1,3 +1,4 @@
+import * as locales from '@mui/material/locale';
 import { ReactNode } from 'react';
 
 import { AppBar, ContentWidth, Footer, Mode, Skin, ThemeColor, VerticalNavToggle } from '../theme/types';
@@ -16,6 +17,7 @@ export type Settings = {
 	lastLayout?: 'vertical' | 'horizontal';
 	verticalNavToggleType: VerticalNavToggle;
 	toastPosition?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+	locale: keyof typeof locales;
 };
 
 export type PageSpecificSettings = {

@@ -18,6 +18,7 @@ const initialSettings: Settings = {
 	toastPosition: themeConfig.toastPosition,
 	verticalNavToggleType: themeConfig.verticalNavToggleType,
 	appBar: themeConfig.layout === 'horizontal' && themeConfig.appBar === 'hidden' ? 'fixed' : themeConfig.appBar,
+	locale: 'enUS',
 };
 
 const staticSettings = {
@@ -47,7 +48,6 @@ const restoreSettings = (): Settings | null => {
 	return settings;
 };
 
-// set settings in localStorage
 const storeSettings = (settings: Settings) => {
 	const initSettings = Object.assign({}, settings);
 
@@ -60,14 +60,12 @@ const storeSettings = (settings: Settings) => {
 	localStorage.setItem(SETTINGS_KEY, JSON.stringify(initSettings));
 };
 
-// ** Create Context
 const SettingsContext = createContext<SettingsContextValue>({
 	saveSettings: () => null,
 	settings: initialSettings,
 });
 
 export const SettingsProvider = ({ children, pageSettings }: SettingsProviderProps) => {
-	// ** State
 	const [settings, setSettings] = useState<Settings>({ ...initialSettings });
 
 	useEffect(() => {
