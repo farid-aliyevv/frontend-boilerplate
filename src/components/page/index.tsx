@@ -6,15 +6,14 @@ type PageProps = {
 	children: ReactNode;
 	title?: string;
 	className?: string;
-	style?: React.CSSProperties;
 };
 
 const Root = styled('div')(() => ({
 	minHeight: '100%',
 }));
 
-const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title = '', ...props }, ref) => {
-	const pageTitle = title ? title : import.meta.env.VITE_PROJECT_NAME;
+const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title, ...props }, ref) => {
+	const pageTitle = `${import.meta.env.VITE_PROJECT_NAME}${title ? ' | ' + title : ''}`;
 
 	return (
 		<Root ref={ref} {...props}>

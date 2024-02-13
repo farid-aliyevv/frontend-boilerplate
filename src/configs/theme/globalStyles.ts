@@ -6,7 +6,7 @@ const GlobalStyles = (_theme: Theme) => {
 		'.MuiGrid-container.match-height .MuiCard-root': {
 			height: '100%',
 		},
-		'.iconify g': {
+		'.iconify g, .iconify path': {
 			strokeWidth: 1.5,
 		},
 	};

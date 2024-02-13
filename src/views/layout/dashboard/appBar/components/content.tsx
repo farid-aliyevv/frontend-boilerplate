@@ -4,6 +4,7 @@ import Icon from 'components/icon';
 import LanguageMenu from 'components/language-menu';
 import { Settings } from 'configs/context/types';
 
+import ModeToggler from './mode-toggler';
 import UserMenu from './user-menu';
 
 interface Props {
@@ -26,6 +27,7 @@ const AppBarContent = (props: Props) => {
 			</Box>
 			<Box className="actions-right" sx={{ display: 'flex', alignItems: 'center' }}>
 				<LanguageMenu />
+				<ModeToggler />
 				<UserMenu />
 			</Box>
 		</Box>
