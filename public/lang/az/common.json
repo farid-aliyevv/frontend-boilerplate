@@ -14,5 +14,9 @@
 	"defaultErrorMessage": "Xəta baş verdi!",
 	"notFound": "Səhifə Tapılmadı",
 	"backToHome": "Ana səhifəyə qayıt",
-	"urlNotFound": "Tələb olunan URL bu serverdə tapılmadı."
+	"urlNotFound": "Tələb olunan URL bu serverdə tapılmadı.",
+	"signOut": "Hesabdan çıx",
+	"signOutDescription": "Hesabdan çıxmaq istədiyinizə əminsiniz?",
+	"yes": "Bəli",
+	"no": "Xeyr"
 }

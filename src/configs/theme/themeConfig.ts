@@ -1,4 +1,6 @@
-import { AppBar, ContentWidth, Footer, HorizontalMenuToggle, Mode, Skin, VerticalNavToggle } from './types';
+import { AppBar, ContentWidth, Footer, VerticalNavToggle } from 'views/layout/dashboard/types';
+
+import { Mode, Skin } from './types';
 
 type ThemeConfig = {
 	skin: Skin;
@@ -21,7 +23,6 @@ type ThemeConfig = {
 	horizontalMenuAnimation: boolean;
 	layout: 'vertical' | 'horizontal';
 	verticalNavToggleType: VerticalNavToggle;
-	horizontalMenuToggle: HorizontalMenuToggle;
 	afterVerticalNavMenuContentPosition: 'fixed' | 'static';
 	beforeVerticalNavMenuContentPosition: 'fixed' | 'static';
 	toastPosition: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
@@ -49,7 +50,6 @@ const themeConfig: ThemeConfig = {
 	collapsedNavigationSize: 82 /* Number in px(Pixels) /*! Note: This is for Vertical navigation menu only */,
 	afterVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
 	beforeVerticalNavMenuContentPosition: 'fixed' /* fixed | static */,
-	horizontalMenuToggle: 'hover' /* click | hover /*! Note: This is for Horizontal navigation menu only */,
 	horizontalMenuAnimation: true /* true | false */,
 
 	// ** AppBar Configs

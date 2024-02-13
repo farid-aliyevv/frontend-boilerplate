@@ -1,7 +1,8 @@
 import * as locales from '@mui/material/locale';
 import { ReactNode } from 'react';
+import { AppBar, ContentWidth, Footer, VerticalNavToggle } from 'views/layout/dashboard/types';
 
-import { AppBar, ContentWidth, Footer, Mode, Skin, ThemeColor, VerticalNavToggle } from '../theme/types';
+import { Mode, Skin, ThemeColor } from '../theme/types';
 
 export type Settings = {
 	skin: Skin;

@@ -5,6 +5,8 @@ import { PrivateRoute as PrivateRoutes } from './PrivateRoute';
 
 const RootLayout = lazy(() => import('views/layout/root'));
 const AuthLayout = lazy(() => import('views/layout/auth'));
+const DashboardLayout = lazy(() => import('views/layout/dashboard'));
+
 const LoginPage = lazy(() => import('views/auth/login'));
 
 const HomePage = lazy(() => import('views/dashboard/home'));
@@ -29,12 +31,13 @@ export const router = createBrowserRouter([
 				element: <PrivateRoutes />,
 				children: [
 					{
-						index: true,
-						element: <HomePage />,
-					},
-					{
-						path: '/protected',
-						element: <div>Protected</div>,
+						element: <DashboardLayout />,
+						children: [
+							{
+								index: true,
+								element: <HomePage />,
+							},
+						],
 					},
 				],
 			},

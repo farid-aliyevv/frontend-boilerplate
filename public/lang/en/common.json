@@ -14,5 +14,9 @@
 	"defaultErrorMessage": "Something went wrong!",
 	"notFound": "Not Found",
 	"backToHome": "Back to home",
-	"urlNotFound": "The requested URL was not found on this server."
+	"urlNotFound": "The requested URL was not found on this server.",
+	"signOut": "Sign out",
+	"signOutDescription": "Are you sure you want to log out?",
+	"yes": "Yes",
+	"no": "No"
 }
