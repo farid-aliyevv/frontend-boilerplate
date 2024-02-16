@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { Settings, SettingsContextValue, SettingsProviderProps } from './types';
 
 const initialSettings: Settings = {
-	themeColor: 'error',
+	themeColor: 'primary',
 	mode: themeConfig.mode,
 	skin: themeConfig.skin,
 	footer: themeConfig.footer,

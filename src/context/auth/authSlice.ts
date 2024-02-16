@@ -34,7 +34,14 @@ export const logoutAsync = createAuthThunk('auth/logout', auth.revokeToken);
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		logout: (state) => {
+			state.isLoggedIn = false;
+			state.currentUser = null;
+			localStorage.removeItem(ACCESS_TOKEN_KEY);
+			localStorage.removeItem(REFRESH_TOKEN_KEY);
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loginAsync.fulfilled, (state, { payload }) => {
@@ -68,6 +75,8 @@ export const authSlice = createSlice({
 			});
 	},
 });
+
+export const { logout } = authSlice.actions;
 
 export const selectCurrentUser = (state: RootState) => state.auth.currentUser;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;

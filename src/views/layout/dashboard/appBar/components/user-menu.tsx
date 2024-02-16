@@ -5,11 +5,12 @@ import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
+import { useMutation } from '@tanstack/react-query';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import Icon from 'components/icon';
 import { LogoutDialog } from 'components/logout-dialog';
 import { REFRESH_TOKEN_KEY } from 'configs/constants';
-import { logoutAsync, selectCurrentUser } from 'context/auth/authSlice';
+import { logout, logoutAsync, selectCurrentUser } from 'context/auth/authSlice';
 import { SyntheticEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -35,6 +36,12 @@ const UserMenu = () => {
 	const user = useAppSelector(selectCurrentUser)!;
 	const dispatch = useAppDispatch();
 
+	const { mutate: logoutAndRevoke } = useMutation({
+		mutationFn: (refreshToken: string) => {
+			return dispatch(logoutAsync(refreshToken));
+		},
+	});
+
 	const handleDropdownOpen = (event: SyntheticEvent) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -59,7 +66,12 @@ const UserMenu = () => {
 	};
 
 	const handleLogout = () => {
-		dispatch(logoutAsync(localStorage.getItem(REFRESH_TOKEN_KEY)!));
+		const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+		if (refreshToken) {
+			logoutAndRevoke(refreshToken);
+		} else {
+			dispatch(logout());
+		}
 	};
 
 	const handleOpenDialog = () => {

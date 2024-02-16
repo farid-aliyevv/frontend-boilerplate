@@ -81,27 +81,27 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 
-	// come back to this
-	const { mutateAsync: login } = useMutation({
-		mutationFn: async (data: LoginRequestDto) => {
-			await dispatch(loginAsync(data));
+	const { mutate: login } = useMutation({
+		mutationFn: (data: LoginRequestDto) => {
+			return dispatch(loginAsync(data));
 		},
 	});
 
 	const handleSubmit = (formData: FormData, { setSubmitting }: FormikHelpers<FormData>) => {
 		const data = deepOmit(formData, ['rememberMe']);
-		login(data)
-			.then(() => {
+		login(data, {
+			onSuccess: () => {
 				toast.success(t('loginSuccess'));
 				navigate(location.state?.from ?? '/');
-			})
-			.catch((error) => {
+			},
+			onError: (error) => {
 				console.log(error);
 				toast.error(t('defaultErrorMessage'));
-			})
-			.finally(() => {
+			},
+			onSettled: () => {
 				setSubmitting(false);
-			});
+			},
+		});
 	};
 
 	const initialValues = {
