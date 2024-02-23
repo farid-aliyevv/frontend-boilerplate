@@ -11,16 +11,29 @@ const ModeToggler = () => {
 	};
 
 	const handleModeToggle = () => {
+		let newMode: Mode;
 		if (settings.mode === 'light') {
-			handleModeChange('dark' as Mode);
+			newMode = 'semi-dark';
+		} else if (settings.mode === 'semi-dark') {
+			newMode = 'dark';
 		} else {
-			handleModeChange('light' as Mode);
+			newMode = 'light';
 		}
+		handleModeChange(newMode);
 	};
 
 	return (
 		<IconButton color="inherit" onClick={handleModeToggle}>
-			<Icon fontSize="1.625rem" icon={settings.mode === 'dark' ? 'tabler:sun' : 'tabler:moon-stars'} />
+			<Icon
+				fontSize="1.625rem"
+				icon={
+					settings.mode === 'dark'
+						? 'tabler:sun'
+						: settings.mode === 'semi-dark'
+						  ? 'tabler:sun-moon'
+						  : 'tabler:moon-stars'
+				}
+			/>
 		</IconButton>
 	);
 };
