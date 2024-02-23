@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Box, { BoxProps } from '@mui/material/Box';
 import List from '@mui/material/List';
 import { createTheme, responsiveFontSizes, styled, ThemeProvider } from '@mui/material/styles';
 import themeConfig from 'configs/theme/themeConfig';
 import themeOptions from 'configs/theme/ThemeOptions';
 import { useRef, useState } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import { hexToRGBA } from 'utils/hex-to-rgba';
 
 import { LayoutProps } from '../types';
@@ -56,7 +54,6 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
 
 const Navigation = (props: Props) => {
 	const {
-		hidden,
 		settings,
 		afterNavMenuContent,
 		beforeNavMenuContent,
@@ -85,38 +82,6 @@ const Navigation = (props: Props) => {
 		darkTheme = responsiveFontSizes(darkTheme);
 	}
 
-	const handleInfiniteScroll = (ref: HTMLElement) => {
-		if (ref) {
-			// @ts-expect-error abc
-			ref._getBoundingClientRect = ref.getBoundingClientRect;
-
-			ref.getBoundingClientRect = () => {
-				// @ts-expect-error abc
-				const original = ref._getBoundingClientRect();
-
-				return { ...original, height: Math.floor(original.height) };
-			};
-		}
-	};
-
-	const scrollMenu = (container: any) => {
-		if (beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) {
-			container = hidden ? container.target : container;
-			if (shadowRef && container.scrollTop > 0) {
-				// @ts-expect-error abc
-				if (!shadowRef.current.classList.contains('scrolled')) {
-					// @ts-expect-error abc
-					shadowRef.current.classList.add('scrolled');
-				}
-			} else {
-				// @ts-expect-error abc
-				shadowRef.current.classList.remove('scrolled');
-			}
-		}
-	};
-
-	const ScrollWrapper = hidden ? Box : PerfectScrollbar;
-
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Drawer {...props} navigationBorderWidth={navigationBorderWidth}>
@@ -128,26 +93,14 @@ const Navigation = (props: Props) => {
 					<StyledBoxForShadow ref={shadowRef} />
 				)}
 				<Box sx={{ position: 'relative', overflow: 'hidden' }}>
-					{/* @ts-expect-error abc */}
-					<ScrollWrapper
-						{...(hidden
-							? {
-									onScroll: (container: any) => scrollMenu(container),
-									sx: { height: '100%', overflowY: 'auto', overflowX: 'hidden' },
-							  }
-							: {
-									options: { wheelPropagation: false },
-									onScrollY: (container: any) => scrollMenu(container),
-									containerRef: (ref: any) => handleInfiniteScroll(ref),
-							  })}
-					>
+					<Box>
 						{beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'static'
 							? beforeNavMenuContent(navMenuContentProps)
 							: null}
 						{userNavMenuContent ? (
 							userNavMenuContent(navMenuContentProps)
 						) : (
-							<List className="nav-items" sx={{ pt: 0, '& > :first-of-type': { mt: '0' } }}>
+							<List className="nav-items" sx={{ pt: 0, '& > :first-child': { mt: '0' } }}>
 								<VerticalNavItems
 									groupActive={groupActive}
 									setGroupActive={setGroupActive}
@@ -160,7 +113,7 @@ const Navigation = (props: Props) => {
 						{afterNavMenuContent && afterVerticalNavMenuContentPosition === 'static'
 							? afterNavMenuContent(navMenuContentProps)
 							: null}
-					</ScrollWrapper>
+					</Box>
 				</Box>
 				{afterNavMenuContent && afterVerticalNavMenuContentPosition === 'fixed'
 					? afterNavMenuContent(navMenuContentProps)

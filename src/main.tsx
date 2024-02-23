@@ -1,6 +1,5 @@
 import './index.css';
 import 'i18n';
-import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { store } from 'app/store';
