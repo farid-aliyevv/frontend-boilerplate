@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { forwardRef, ReactNode } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { forwardRef, ReactNode, useEffect } from 'react';
 
 type PageProps = {
 	children: ReactNode;
@@ -15,14 +14,13 @@ const Root = styled('div')(() => ({
 const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title, ...props }, ref) => {
 	const pageTitle = `${import.meta.env.VITE_PROJECT_NAME}${title ? ' | ' + title : ''}`;
 
+	useEffect(() => {
+		document.title = pageTitle;
+	}, [pageTitle]);
+
 	return (
 		<Root ref={ref} {...props}>
-			<HelmetProvider>
-				<Helmet>
-					<title>{pageTitle}</title>
-				</Helmet>
-				{children}
-			</HelmetProvider>
+			{children}
 		</Root>
 	);
 });
