@@ -4,6 +4,7 @@ import 'i18n';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { store } from 'app/store';
 import ReactHotToast from 'components/react-hot-toast';
+import { ConfirmationProvider } from 'configs/context/confirmationContext';
 import { SettingsConsumer, SettingsProvider } from 'configs/context/settingsContext';
 import ThemeComponent from 'configs/theme/ThemeComponent';
 import React from 'react';
@@ -24,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 						{({ settings }) => {
 							return (
 								<ThemeComponent settings={settings}>
-									<RouterProvider router={router} />
+									<ConfirmationProvider>
+										<RouterProvider router={router} />
+									</ConfirmationProvider>
 									<ReactHotToast>
 										<Toaster
 											position={settings.toastPosition}

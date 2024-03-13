@@ -18,5 +18,9 @@
 	"signOut": "Hesabdan çıx",
 	"signOutDescription": "Hesabdan çıxmaq istədiyinizə əminsiniz?",
 	"yes": "Bəli",
-	"no": "Xeyr"
+	"no": "Xeyr",
+	"confirmText": "Məlumatı sil",
+	"descriptionText": "Məlumatları silmək istədiyinizə əminsinizmi? Bu əməliyyat geri alına bilməz.",
+	"cancel": "Ləğv et",
+	"delete": "Sil"
 }

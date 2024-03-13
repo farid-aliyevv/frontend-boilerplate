@@ -18,5 +18,9 @@
 	"signOut": "Sign out",
 	"signOutDescription": "Are you sure you want to log out?",
 	"yes": "Yes",
-	"no": "No"
+	"no": "No",
+	"confirmText": "Delete data",
+	"descriptionText": "Are you sure you want to delete this data? This action cannot be undone.",
+	"cancel": "Cancel",
+	"delete": "Delete"
 }

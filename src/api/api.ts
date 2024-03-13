@@ -67,4 +67,7 @@ export const request = {
 	get: <T>(url: string, config?: AxiosRequestConfig) => api.get<T>(url, config).then(responseBody),
 	post: <T>(url: string, body: object, config?: AxiosRequestConfig) =>
 		api.post<T>(url, body, config).then(responseBody),
+	put: <T>(url: string, body: object, config?: AxiosRequestConfig) =>
+		api.put<T>(url, body, config).then(responseBody),
+	delete: <T>(url: string, config?: AxiosRequestConfig) => api.delete<T>(url, config).then(responseBody),
 };
