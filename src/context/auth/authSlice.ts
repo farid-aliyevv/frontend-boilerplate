@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { auth } from 'api/services/auth/auth';
+import { LoginResponseDto } from 'api/services/auth/auth.dto';
 import { RootState } from 'app/store';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'configs/constants';
 import { getUserFromToken } from 'utils/get-user-from-token';
@@ -31,15 +32,24 @@ export const loginAsync = createAuthThunk('auth/login', auth.login);
 export const refreshTokenAsync = createAuthThunk('auth/refreshToken', auth.refreshToken);
 export const logoutAsync = createAuthThunk('auth/logout', auth.revokeToken);
 
+const setTokensInLocalStorage = ({ accessToken, refreshToken }: LoginResponseDto) => {
+	localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+	localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+};
+
+const resetAuthState = (state: AuthState) => {
+	state.isLoggedIn = false;
+	state.currentUser = null;
+	localStorage.removeItem(ACCESS_TOKEN_KEY);
+	localStorage.removeItem(REFRESH_TOKEN_KEY);
+};
+
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
 		logout: (state) => {
-			state.isLoggedIn = false;
-			state.currentUser = null;
-			localStorage.removeItem(ACCESS_TOKEN_KEY);
-			localStorage.removeItem(REFRESH_TOKEN_KEY);
+			resetAuthState(state);
 		},
 	},
 	extraReducers: (builder) => {
@@ -47,9 +57,7 @@ export const authSlice = createSlice({
 			.addCase(loginAsync.fulfilled, (state, { payload }) => {
 				state.isLoggedIn = true;
 
-				const { accessToken, refreshToken } = payload;
-				localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-				localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+				setTokensInLocalStorage(payload);
 
 				state.currentUser = getUserFromToken();
 			})
@@ -57,20 +65,17 @@ export const authSlice = createSlice({
 				throw error;
 			})
 			.addCase(refreshTokenAsync.fulfilled, (_, { payload }) => {
-				const { accessToken, refreshToken } = payload;
-				localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-				localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+				setTokensInLocalStorage(payload);
 			})
-			.addCase(refreshTokenAsync.rejected, (_, { error }) => {
+			.addCase(refreshTokenAsync.rejected, (state, { error }) => {
+				resetAuthState(state);
 				throw error;
 			})
 			.addCase(logoutAsync.fulfilled, (state) => {
-				state.isLoggedIn = false;
-				state.currentUser = null;
-				localStorage.removeItem(ACCESS_TOKEN_KEY);
-				localStorage.removeItem(REFRESH_TOKEN_KEY);
+				resetAuthState(state);
 			})
-			.addCase(logoutAsync.rejected, (_, { error }) => {
+			.addCase(logoutAsync.rejected, (state, { error }) => {
+				resetAuthState(state);
 				throw error;
 			});
 	},
