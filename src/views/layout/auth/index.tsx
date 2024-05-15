@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import LanguageMenu from 'components/language-menu';
+import { LanguageMenu } from 'components/language-menu';
 import { Outlet } from 'react-router-dom';
 
 const Root = styled(Box)<BoxProps>(({ theme }) => ({

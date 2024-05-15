@@ -1,15 +1,16 @@
 import Box, { BoxProps } from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Spinner = ({ sx }: { sx?: BoxProps['sx'] }) => {
+export const Spinner = ({ sx, page = false }: { sx?: BoxProps['sx'] } & { page?: boolean }) => {
 	return (
 		<Box
 			sx={{
-				height: '100vh',
+				height: page ? '100vh' : 'initial',
 				display: 'flex',
 				alignItems: 'center',
 				flexDirection: 'column',
 				justifyContent: 'center',
+				mb: page ? 0 : 10,
 				...sx,
 			}}
 		>
@@ -17,5 +18,3 @@ const Spinner = ({ sx }: { sx?: BoxProps['sx'] }) => {
 		</Box>
 	);
 };
-
-export default Spinner;

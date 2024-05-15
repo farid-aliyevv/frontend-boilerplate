@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Icon from 'components/icon';
-import LanguageMenu from 'components/language-menu';
+import { LanguageMenu } from 'components/language-menu';
 import { Settings } from 'configs/context/types';
 
 import ModeToggler from './mode-toggler';

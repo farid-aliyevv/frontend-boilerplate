@@ -34,7 +34,7 @@ const DEFAULT_CONFIRM_STATE: ConfirmType = {
 	onConfirm: () => {},
 };
 
-export const ConfirmationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ConfirmationProvider = ({ children }: { children: ReactNode }) => {
 	const [confirmProp, setConfirmProps] = useState<ConfirmType>(DEFAULT_CONFIRM_STATE);
 
 	const confirm = ({

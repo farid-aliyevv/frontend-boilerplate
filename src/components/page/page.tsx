@@ -11,7 +11,7 @@ const Root = styled('div')(() => ({
 	minHeight: '100%',
 }));
 
-const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title, ...props }, ref) => {
+export const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title, ...props }, ref) => {
 	const pageTitle = `${import.meta.env.VITE_PROJECT_NAME}${title ? ' | ' + title : ''}`;
 
 	useEffect(() => {
@@ -26,5 +26,3 @@ const Page = forwardRef<HTMLDivElement, PageProps>(({ children, title, ...props 
 });
 
 Page.displayName = 'Page';
-
-export default Page;

@@ -1,5 +1,5 @@
-import Page from 'components/page';
-import Spinner from 'components/spinner';
+import { Page } from 'components/page';
+import { Spinner } from 'components/spinner';
 import { Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -15,7 +15,7 @@ const RootLayout = () => {
 	}, [pathname]);
 
 	return (
-		<Suspense fallback={<Spinner />}>
+		<Suspense fallback={<Spinner page />}>
 			<Page title={t(`pages:${currentPath}`)}>
 				<Outlet />
 			</Page>

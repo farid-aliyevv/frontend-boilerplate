@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useMutation } from '@tanstack/react-query';
-import { LoginRequestDto } from 'api/services/auth/auth.dto';
+import { LoginRequestDto } from 'api/services/auth';
 import { useAppDispatch } from 'app/hooks';
 import loginBg1 from 'assets/img/login-bg1.svg';
 import loginBg2 from 'assets/img/login-bg2.svg';

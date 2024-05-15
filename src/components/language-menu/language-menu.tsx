@@ -1,13 +1,13 @@
 import { useAppDispatch } from 'app/hooks';
 import Icon from 'components/icon';
-import OptionsMenu from 'components/options-menu';
+import { OptionsMenu } from 'components/options-menu';
 import { useSettings } from 'configs/context/settingsContext';
 import { setLanguage } from 'context/settings/settingsSlice';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Language, Locale } from 'types';
 
-const LanguageMenu = () => {
+export const LanguageMenu = () => {
 	const { i18n, t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const { settings, saveSettings } = useSettings();
@@ -40,5 +40,3 @@ const LanguageMenu = () => {
 		/>
 	);
 };
-
-export default LanguageMenu;

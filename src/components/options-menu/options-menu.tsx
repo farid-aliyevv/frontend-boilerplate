@@ -34,7 +34,7 @@ const MenuItemWrapper = ({ children, option }: { children: ReactNode; option: Op
 	}
 };
 
-const OptionsMenu = (props: OptionsMenuType) => {
+export const OptionsMenu = (props: OptionsMenuType) => {
 	const { icon, options, menuProps, iconProps, leftAlignMenu, iconButtonProps } = props;
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -97,5 +97,3 @@ const OptionsMenu = (props: OptionsMenuType) => {
 		</>
 	);
 };
-
-export default OptionsMenu;
