@@ -66,16 +66,14 @@ export const authSlice = createSlice({
 			.addCase(refreshTokenAsync.fulfilled, (_, { payload }) => {
 				setTokensInLocalStorage(payload);
 			})
-			.addCase(refreshTokenAsync.rejected, (state, { error }) => {
+			.addCase(refreshTokenAsync.rejected, (state) => {
 				resetAuthState(state);
-				throw error;
 			})
 			.addCase(logoutAsync.fulfilled, (state) => {
 				resetAuthState(state);
 			})
-			.addCase(logoutAsync.rejected, (state, { error }) => {
+			.addCase(logoutAsync.rejected, (state) => {
 				resetAuthState(state);
-				throw error;
 			});
 	},
 });

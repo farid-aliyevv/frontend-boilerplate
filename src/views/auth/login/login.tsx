@@ -94,10 +94,6 @@ export const Login = () => {
 				toast.success(t('loginSuccess'));
 				navigate(location.state?.from ?? '/');
 			},
-			onError: (error) => {
-				console.log(error);
-				toast.error(t('defaultErrorMessage'));
-			},
 			onSettled: () => {
 				setSubmitting(false);
 			},

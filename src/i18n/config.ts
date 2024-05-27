@@ -1,1 +1,1 @@
-export const namespaces = ['pages', 'navigation'];
+export const namespaces = ['pages', 'navigation', 'validation', 'roles'];

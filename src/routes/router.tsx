@@ -10,6 +10,7 @@ const DashboardLayout = lazy(() => import('views/layout/dashboard'));
 const LoginPage = lazy(() => import('views/auth/login'));
 
 const HomePage = lazy(() => import('views/dashboard/home'));
+const RolesPage = lazy(() => import('views/dashboard/roles'));
 
 const NotFoundPage = lazy(() => import('views/misc/404'));
 
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
 							{
 								index: true,
 								element: <HomePage />,
+							},
+							{
+								path: '/roles',
+								element: <RolesPage />,
 							},
 						],
 					},

@@ -7,6 +7,11 @@ const menuItems = (): VerticalNavItemsType => {
 			icon: 'tabler:smart-home',
 			path: '/',
 		},
+		{
+			title: 'roles',
+			icon: 'tabler:settings',
+			path: '/roles',
+		},
 	];
 };
 

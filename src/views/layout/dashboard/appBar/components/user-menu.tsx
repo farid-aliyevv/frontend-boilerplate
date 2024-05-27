@@ -82,6 +82,11 @@ const UserMenu = () => {
 		setOpenDialog(false);
 	};
 
+	const initials =
+		user.name.split(' ').length > 1
+			? user.name.split(' ')[0][0] + user.name.split(' ')[1][0]
+			: user.name.split(' ')[0][0];
+
 	return (
 		<>
 			<Badge
@@ -103,7 +108,7 @@ const UserMenu = () => {
 					}}
 					onClick={handleDropdownOpen}
 				>
-					{user.name.split(' ')[0][0] + user.name.split(' ')[1][0]}
+					{initials}
 				</Avatar>
 			</Badge>
 			<Menu
@@ -132,12 +137,12 @@ const UserMenu = () => {
 									color: (theme) => theme.palette.common.white,
 								}}
 							>
-								{user.name.split(' ')[0][0] + user.name.split(' ')[1][0]}
+								{initials}
 							</Avatar>
 						</Badge>
 						<Box sx={{ display: 'flex', ml: 2.5, alignItems: 'flex-start', flexDirection: 'column' }}>
 							<Typography sx={{ fontWeight: 500 }}>{user.name}</Typography>
-							<Typography variant="body2">{user.role[0]}</Typography>
+							<Typography variant="body2">{user.role}</Typography>
 						</Box>
 					</Box>
 				</Box>

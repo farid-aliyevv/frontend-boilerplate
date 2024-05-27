@@ -30,8 +30,8 @@ const ModeToggler = () => {
 					settings.mode === 'dark'
 						? 'tabler:sun'
 						: settings.mode === 'semi-dark'
-						  ? 'tabler:sun-moon'
-						  : 'tabler:moon-stars'
+						  ? 'tabler:moon-stars'
+						  : 'tabler:sun-moon'
 				}
 			/>
 		</IconButton>

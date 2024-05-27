@@ -2,6 +2,8 @@ import { store } from 'app/store';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from 'configs/constants';
 import { logoutAsync, refreshTokenAsync } from 'context/auth/authSlice';
+import i18next from 'i18next';
+import toast from 'react-hot-toast';
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -54,6 +56,10 @@ api.interceptors.response.use(
 
 					return api(originalRequest);
 				}
+				break;
+			}
+			default: {
+				toast.error(error.response.data.detail || i18next.t('defaultErrorMessage'));
 			}
 		}
 
